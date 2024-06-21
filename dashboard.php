@@ -19,11 +19,11 @@
 				session_name('wwwFannese');
 				
 				session_start();
-				
+/*				
 if(DEBUG_A)	echo "<pre class='debug value'><b>Line " . __LINE__ . "</b>: \$_SESSION <i>(" . basename(__FILE__) . ")</i>:<br>\n";					
 if(DEBUG_A)	print_r($_SESSION);					
 if(DEBUG_A)	echo "</pre>";	
-
+*/
 				#*******************************************#
 				#********** VALID LOGIN ÜBERPRÜFEN**********#
 				#*******************************************#	
@@ -46,11 +46,11 @@ if(DEBUG)		echo "<p class='debug'>📑 <b>Line " . __LINE__ . "</b>: Login ist e
 					session_regenerate_id(true);
 					// Identifizieren des Users anhand der ID in der Session
 					$userID = $_SESSION['ID'];
-					
+/*					
 if(DEBUG_A)		echo "<pre class='debug value'><b>Line " . __LINE__ . "</b>: \$_SESSION_ID <i>(" . basename(__FILE__) . ")</i>:<br>\n";					
 if(DEBUG_A)		print_r($userID );					
 if(DEBUG_A)		echo "</pre>";						
-					
+*/					
 	
 				} //END SESSION LOGIN VALID
 
@@ -79,14 +79,9 @@ if(DEBUG) 			echo "<p class='debug db err'><b>Line " . __LINE__ . "</b>: Logout 
 						// weiterleiten
 						header('LOCATION: ./');
 						exit();
-						
-						
-						
-						
+			
 					} //END  LOGOUT
-					
-					
-					
+		
 				} //END CHECK URL LOGOUT
 
 
@@ -106,12 +101,13 @@ if(DEBUG) 			echo "<p class='debug db err'><b>Line " . __LINE__ . "</b>: Logout 
 					$count			= NULL;
 					$catData			= NULL;
 				
-					#********** PREVIEW POST ARRAY **********#
 				
+					#********** PREVIEW POST ARRAY **********#
+/*				
 if(DEBUG_A)		echo "<pre class='debug value'><b>Line " . __LINE__ . "</b>: \$_POST <i>(" . basename(__FILE__) . ")</i>:<br>\n";					
 if(DEBUG_A)		print_r( $_POST);					
 if(DEBUG_A)		echo "</pre>";						
-					
+*/					
 					//SCHRITT. 1. Prüfen ob formular abgeschickt wurde
 					if(	isset($_POST['formNewCategory'])	===	true)	{
 if(DEBUG)			echo "<p class='debug'>📑 <b>Line " . __LINE__ . "</b>:Category Formular wurde abgeschickt.... <i>(" . basename(__FILE__) . ")</i></p>\n";
@@ -172,7 +168,7 @@ if(DEBUG) 					echo "<p class='debug db err'><b>Line " . __LINE__ . "</b>: das c
 							} else{
 								//erfolgsfall
 if(DEBUG)					echo "<p class='debug'>📑 <b>Line " . __LINE__ . "</b>: Category existiert noch nicht in der DB <i>(" . basename(__FILE__) . ")</i></p>\n";
-								
+			
 															
 								//Schritt 2. sql Statement und Placeholders
 								$sql				=	'INSERT INTO categories 
@@ -289,10 +285,11 @@ if(DEBUG)		echo "<p class='debug'>📑 <b>Line " . __LINE__ . "</b>: Formular Bl
 					$content				=	sanitizeString($_POST['content']);
 					$filename			=	sanitizeString($_POST['filename']);
 					$align				=	sanitizeString($_POST['align']);
+/*					
 if(DEBUG_V)		echo "<p class='debug value'><b>Line " . __LINE__ . "</b>: \$category: $category <i>(" . basename(__FILE__) . ")</i></p>\n";
 if(DEBUG_V)		echo "<p class='debug value'><b>Line " . __LINE__ . "</b>: \$ueberschrift: $ueberschrift <i>(" . basename(__FILE__) . ")</i></p>\n";
 if(DEBUG_V)		echo "<p class='debug value'><b>Line " . __LINE__ . "</b>: \$content: $content <i>(" . basename(__FILE__) . ")</i></p>\n";
-			
+*/			
 					//Schritt 3. Feld Validierung
 					//$errorCategory			=	validateInputString($category);
 					$errorUeberschrift	=	validateInputString($ueberschrift);
@@ -308,7 +305,8 @@ if(DEBUG)			echo "<p class='debug err'>📑<b>Line " . __LINE__ . "</b>: FEHLER:
 						//Erfolgsfall
 if(DEBUG)			echo "<p class='debug'>📑 <b>Line " . __LINE__ . "</b>: Formular Blog ist Fehlerfrei <i>(" . basename(__FILE__) . ")</i></p>\n";
 						$erfolgForm	=	'Das Formular ist komform Fehlerfrei';
-						
+
+
 						//Schritt 4. FormBlog weiterverarbeitung
 						
 						#******************************************#
@@ -425,11 +423,7 @@ if(DEBUG)				echo "<p class='debug'>📑 <b>Line " . __LINE__ . "</b>: Blog erfo
 		
 			<h1>PHP-Projekt  Blog-System </h1>
 			
-			<!-- -------- USER MESSAGES START -------- -->
-
-			<!-- -------- USER MESSAGES END -------- -->
-			
-			
+		
 			<!--------ERSTELLEN EINES BLOGEINTRAG-------->
 			<div>
 			  <form action="" class="container" method="POST">
