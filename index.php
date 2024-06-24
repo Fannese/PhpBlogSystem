@@ -19,6 +19,8 @@
 				$filterID		 	=	NULL;
 				$filterAllBlog		=	NULL;
 				$msgAllCategory	=	NULL;
+				$userFirstName		=	NULL;
+				$userLastName		=	NULL;
 				
 				#***************************************#
 				#*********FORMULARVERARBEITUNG *********#
@@ -293,7 +295,7 @@ if(DEBUG)	echo "<p class='debug'>📑 <b>Line " . __LINE__ . "</b>: Alle Blogein
 					//
 					//Statement und Placeholders
 					//zugriff auf die Blogs
-					$sql				= 'SELECT * FROM blogs';
+					$sql				= 'SELECT * FROM blogs INNER JOIN users';
 											
 					$placeholders	= array();
 			
@@ -303,7 +305,7 @@ if(DEBUG)		echo "<p class='debug'>📑 <b>Line " . __LINE__ . "</b>: Blogeinträ
 					//
 					//Statement und Placeholders
 					//zugriff auf die Blogs und catID
-					$sql				= 'SELECT * FROM blogs WHERE catID = :catID';
+					$sql				= 'SELECT * FROM blogs INNER JOIN users WHERE catID = :catID' ;
 											
 					$placeholders	= array('catID'=>$filterID);
 					
@@ -321,11 +323,12 @@ if(DEBUG) 		echo "<p class='debug db err'><b>Line " . __LINE__ . "</b>: ERROR: "
 				}	
 								
 				$blogData 	= $PDOStatement->fetchAll(PDO::FETCH_ASSOC);
-/*				
+				//$user			= $PDOStatement->fetchAll(PDO::FETCH_ASSOC);
+				
 if(DEBUG_A)	echo "<pre class='debug value'><b>Line " . __LINE__ . "</b>: \$blogData <i>(" . basename(__FILE__) . ")</i>:<br>\n";					
 if(DEBUG_A)	print_r($blogData);					
 if(DEBUG_A)	echo "</pre>";	
-*/																
+															
 				
 				// DB-Verbindung schließen
 				dbClose($PDO, $PDOStatement);
@@ -416,7 +419,7 @@ if(DEBUG_A)	echo "</pre>";
 			 <h2><?=$msgAllCategory?></h2>
 			<?php foreach($blogData AS $blog): ?>
 			<hr>
-			<h4><?=$blog['userID'] ?></h4>
+			<h4>Hallo <?=$blog['userFirstName'] ?> <?=$blog['userLastName'] ?> du hast dieses Beitrag am  <?=$blog['blogDate'] ?>verfasst</h4>
 			<h3><?=$blog['blogHeadline'] ?></h3>
 			<p><?=$blog['blogContent'] ?></p>
 			<img src="<?=$blog['blogImagePath'] ?>" alt="Girl in a jacket" width="200" height="300">
